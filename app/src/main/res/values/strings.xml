@@ -1,0 +1,10 @@
+<resources>
+  <string name="app_name">AdListApp</string>
+  <string name="title_activity_list">ListActivity</string>
+  <string name="APiCall">String JSON_URL =  "http://www.tyroocentral.com/www/api/v3/API.php?requestParams={ \"randohum\": \"cjjlsk\", \"ads\": [ { \"adViewId\": \"1376 \", \"isAdWall\": \"false\", \"sendRepeat\": \"false\", \"size\": \"10\", \"startIndex\": \"0\" } ], \"apiVersion\": \"3\", \"deviceLanguage\": \"en\", \"deviceX\": \"1080\", \"deviceY\": \"1776\", \"directImageUrl\": \"1\", \"subid1\": \"hello\", \"subid2\": \"how\", \"subid4\": \"you\", \"subid3\": \"are\", \"subid5\": \"fine\", \"idfa\": \"6D92078A - 8246 - 4BA4 - AE5B - 76104861E7DC\" , \"gaid\": \"d4f8030b - 4a52 - 4261 - 9830 - bd6c987cd261\", \"hashCode\": \"QEfsvw8LSjssGSpSPNb+SissH0v890dODTkiTAY+QO33OxEW\", \"isMobile\": \"true\", \"packageName\": \"009\", \"adWallId\":\"\", \"requestSource\": \"SDK\", \"dynamicPlacement\": \"false\" }"</string>
+  <string name="product_name_title_holder">Product name</string>
+  <string name="product_name_hint">Product Name</string>
+  <string name="install_str">Install</string>
+
+
+</resources>
