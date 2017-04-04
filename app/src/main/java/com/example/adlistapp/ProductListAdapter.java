@@ -15,10 +15,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-/**
- * Created by abhishek on 2/4/17.
- */
-
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.MyViewHolder> {
 
   private List<ListingItems> itemList;

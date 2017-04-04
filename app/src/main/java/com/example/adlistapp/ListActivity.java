@@ -52,6 +52,9 @@ public class ListActivity extends AppCompatActivity {
     init();
   }
 
+  /**
+   * Initializing all the component and providing the listeners to them.
+   */
   private void init() {
     recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
     mProgressBar = (ProgressBar) findViewById(R.id.pbHeaderProgress);
@@ -66,6 +69,9 @@ public class ListActivity extends AppCompatActivity {
     setOnitemClickListener();
   }
 
+  /**
+   * Handling of the item click. Mostly open the browser.
+   */
   private void setOnitemClickListener() {
     recyclerView.addOnItemTouchListener(
         new RecyclerItemClickListener(this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
@@ -81,7 +87,9 @@ public class ListActivity extends AppCompatActivity {
     );
   }
 
-
+  /**
+   * this will fetch the responce from the list of items to be displayed.
+   */
   private void fetchDataFromServer() {
     mProgressBar.setVisibility(View.VISIBLE);
     String JSON_URL =  "http://www.tyroocentral.com/www/api/v3/API.php?requestParams={ \"randohum\": \"cjjlsk\", \"ads\": [ { \"adViewId\": \"1376 \", \"isAdWall\": \"false\", \"sendRepeat\": \"false\", \"size\": \"10\", \"startIndex\": \"0\" } ], \"apiVersion\": \"3\", \"deviceLanguage\": \"en\", \"deviceX\": \"1080\", \"deviceY\": \"1776\", \"directImageUrl\": \"1\", \"subid1\": \"hello\", \"subid2\": \"how\", \"subid4\": \"you\", \"subid3\": \"are\", \"subid5\": \"fine\", \"idfa\": \"6D92078A - 8246 - 4BA4 - AE5B - 76104861E7DC\" , \"gaid\": \"d4f8030b - 4a52 - 4261 - 9830 - bd6c987cd261\", \"hashCode\": \"QEfsvw8LSjssGSpSPNb+SissH0v890dODTkiTAY+QO33OxEW\", \"isMobile\": \"true\", \"packageName\": \"009\", \"adWallId\":\"\", \"requestSource\": \"SDK\", \"dynamicPlacement\": \"false\" }";
@@ -127,6 +135,13 @@ public class ListActivity extends AppCompatActivity {
       this.llm = llm;
     }
 
+    /**
+     * whenever any new item gets attached to the Recyclerview, we take the maximum visible item it is showing
+     * if user scroll up/down but still not exceed the maximum visible item limit in that case we do not do
+     * any thing. Once user exceed the last time maximum we check for the items which are ads and flag are false
+     * then we hit respective impression url.
+     * @param view
+     */
     @Override
     public void onChildViewAttachedToWindow(View view) {
 
@@ -140,6 +155,9 @@ public class ListActivity extends AppCompatActivity {
            for(int itr = Max_visible ; itr>=0 ;itr--){
              ListingItems items = mAdapter.getItem(itr);
              if(items.getOffertype().equalsIgnoreCase("App") && !items.isImpressingTrackingFlag()) {
+               /**
+                * for the first time we are also hitting the ad Unit url as one of the ad is visible
+                */
                if(!mListStyleModel.isAdUnitUrlFired()){
                  startAdUnitTracking(mListStyleModel);
                  mListStyleModel.setAdUnitUrlFired(true);
@@ -160,6 +178,10 @@ public class ListActivity extends AppCompatActivity {
     }
   }
 
+  /**
+   * this function will hit the Ad-unit-tracking url when atleast on the item become visible to the user.
+   * @param listStyleModel
+   */
   private void startAdUnitTracking(final ListStyleModel listStyleModel) {
     StringRequest stringRequest = new StringRequest(Request.Method.GET,listStyleModel.getAduniturl().replace(" ",""),
         new Response.Listener<String>() {
@@ -179,6 +201,12 @@ public class ListActivity extends AppCompatActivity {
     requestQueue.add(stringRequest);
   }
 
+  /**
+   * this function will be called when ad appears to the users.
+   * if we got any failure when hitting this url, we are marking impressionflag for that
+   * particular item to false and again try to hit the url when it again become visible.
+   * @param item listitem
+   */
   public void startImpressionTracking(final ListingItems item){
     StringRequest stringRequest = new StringRequest(Request.Method.GET,item.getImpressiontracking().replace(" ",""),
         new Response.Listener<String>() {

@@ -13,23 +13,23 @@ import java.util.List;
 
 public class ListingItems {
 
-  String name;
-  int actualprice;
-  int specialprice;
-  int discountpercent;
-  int discountprice;
-  int startIn;
-  int expireIn;
+  private String name;
+  private int actualprice;
+  private int specialprice;
+  private int discountpercent;
+  private int discountprice;
+  private int startIn;
+  private  int expireIn;
 
-  String impressiontracking;
-  String targeturl;
-  String directimageurl;
-  String brand;
-  String offertype;
+  private String impressiontracking;
+  private String targeturl;
+  private String directimageurl;
+  private String brand;
+  private String offertype;
 
-  String banner_description;
+  private String banner_description;
 
-  boolean impressingTrackingFlag;
+  private boolean impressingTrackingFlag;
 
   public String getName() {
     return name;
